@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="inscription.css">
 </head>
 <body>
     <div class="container">
@@ -21,10 +21,8 @@
         <p>Pas encore inscrit ? <a href="inscription.php">Inscrivez-vous ici</a>.</p>
     </div>
     <?php
-        // Connexion à la base de données (à adapter avec vos propres informations)
         $bdd = new PDO('mysql:host=localhost;dbname=reseausocial', 'root', 'root');
 
-        // Vérification si le formulaire est soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Récupération des données du formulaire
             $email = $_POST['email'];
@@ -37,16 +35,14 @@
 
             // Vérification du mot de passe
             if ($utilisateur && password_verify($mot_de_passe, $utilisateur['mot_de_passe'])) {
-                // Authentification réussie, rediriger vers la page sécurisée
                 header('Location: accueil.php');
                 exit();
             } else {
-                // Authentification échouée, rediriger vers la page de connexion avec un message d'erreur
                 header('Location: connexion.php?erreur=1');
                 exit();
             }
         }
-        ?>
+    ?>
 
 </body>
 </html>

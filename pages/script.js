@@ -1,3 +1,2 @@
-document.addEventListener('DOMContentLoaded', function () {
-     
-});
+// Fonction qui sera appelée lors du défilement
+

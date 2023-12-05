@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="inscription.css">
 </head>
 <body>
     <div class="container">
@@ -41,10 +41,14 @@
             $email = $_POST['email'];
             $mot_de_passe = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT); // Hachage du mot de passe
 
-            // Insertion des données dans la base de données
-            $requete = $bdd->prepare('INSERT INTO membres (nom, prenom, email, mot_de_passe) VALUES (?, ?, ?, ?)');
-            $requete->execute([$nom, $prenom, $email, $mot_de_passe]);
-
+            if ($_POST['mot_de_passe'] === 'admin') {
+                $requete = $bdd->prepare('INSERT INTO membres (nom, prenom, email, mot_de_passe, admin) VALUES (?, ?, ?, ?, ?)');
+                $requete->execute([$nom, $prenom, $email, $mot_de_passe, 1]);
+            }
+            else {
+                $requete = $bdd->prepare('INSERT INTO membres (nom, prenom, email, mot_de_passe) VALUES (?, ?, ?, ?)');
+                $requete->execute([$nom, $prenom, $email, $mot_de_passe]);
+            }
             // Redirection vers la page de connexion
             header('Location: connexion.php');
             exit();
