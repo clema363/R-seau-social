@@ -64,10 +64,15 @@ nav ul li a {
     text-decoration: none;
 }
 
-nav ul li a:hover, .active {
+nav ul li a.active {
     border-bottom: 2px solid black;
     color: black;
 
+}
+
+nav ul li a:hover{
+    border-bottom: 2px solid #C7C8C8;
+    color: black;
 }
 /*Fin CSS menu*/
 

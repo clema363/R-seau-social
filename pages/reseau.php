@@ -33,7 +33,7 @@
             <img id="logo" src="images/logo.png">
             <ul>
                 <li><a href="accueil.php"><img class="icone" src="images/icones/accueil_bleu.png" data-hover="images/icones/accueil_noir.png">  Accueil</a></li>
-                <li><a href="reseau.php" class="active"><img class="icone" src="images/icones/reseau_bleu.png" data-hover="images/icones/reseau_noir.png">  Mon reseau</a></li>
+                <li><a href="reseau.php" class="active"><img class="icone" src="images/icones/reseau_noir.png" data-hover="images/icones/reseau_noir.png">  Mon reseau</a></li>
                 <li><a href="profil.php"><img class="icone" src="images/icones/profil_bleu.png" data-hover="images/icones/profil_noir.png">  Vous</a></li>
                 <li><a href="notifications.php"><img class="icone" src="images/icones/notifications_bleu.png" data-hover="images/icones/notifications_noir.png">  Notifications</a></li>
                 <li><a href="messagerie.php"><img class="icone" src="images/icones/messagerie_bleu.png" data-hover="images/icones/messagerie_noir.png">  Messagerie</a></li>
