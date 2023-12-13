@@ -16,8 +16,18 @@ body {
     border-radius: 8px;
 }
 
+.nom {
+    color: white;
+    text-align: center;
+    font-family: "Futura", sans-serif;
+    padding: 5px;
+    border: solid #2C6CFF;
+    border-radius: 20px;
+    background-color: #2C6CFF;
+}
+
 h2 {
-    color: #0073b1;
+    color: #2C6CFF;
     font-size: 24px;
     text-align: center;
 }
@@ -40,7 +50,7 @@ input[type="password"] {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #0073b1;
+    background-color: #2C6CFF;
     border: none;
     border-radius: 4px;
     color: white;

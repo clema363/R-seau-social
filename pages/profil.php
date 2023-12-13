@@ -1,9 +1,48 @@
+<?php
+session_start();
+if (!isset($_SESSION['id'])) {
+        header('Location: connexion.php');
+        exit;
+}
+
+$bdd = new PDO('mysql:host=localhost;dbname=reseausocial', 'root', 'root');
+$erreur = ''; // Initialisation de la variable d'erreur
+
+if(isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
+    $tailleMax = 2097152;
+    $extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
+    if($_FILES['avatar']['size'] <= $tailleMax) {
+        $extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+        if(in_array($extensionUpload, $extensionsValides)) {
+            $chemin = "images/photo_de_profil/".$_SESSION['id'].".".$extensionUpload;
+            $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+            if($resultat) {
+                $photo_profil = $_SESSION['id'].".".$extensionUpload;
+                $updateavatar = $bdd->prepare('UPDATE membres SET photo_profil = :photo_profil WHERE id = :id');
+                $updateavatar->execute(array(
+                    'photo_profil' => $photo_profil,
+                    'id' => $_SESSION['id']
+                ));
+
+                $_SESSION['photo_profil'] = $photo_profil; // Mise à jour de la session
+                header('Location: profil.php?id='.$_SESSION['id']);
+            } else {
+                $erreur = "Erreur durant l'importation de votre photo de profil";
+            }
+        } else {
+            $erreur = "Votre photo de profil doit être au format jpg, jpeg, gif ou png";
+        }
+    } else {
+        $erreur = "Votre photo de profil ne doit pas dépasser 2Mo";
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Accueil</title>
+    <title>Vous</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -25,6 +64,8 @@
                 }
             });
         });
+        
+
     </script>
 </head>
 <body>
@@ -42,9 +83,45 @@
         </nav>
     </div>
     <div id="wrapper">
-        
         <div id="section">
-           <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+           
+            <?php echo $_SESSION['photo_profil']; ?>
+            <br>
+            <?php echo $_SESSION['pseudo']; ?>
+            <br>
+            <?php echo "Inscrits depuis le ".$_SESSION['date_creation'];?>
+            <br>
+            <?php echo "<img id='photo' src='images/photo_de_profil/" . $_SESSION['photo_profil'] . "'>";?>
+            <br>
+            <button id="toggleButton">Changer la photo de profil</button>
+            <div id="menuContent" style="display: none;">
+                <form method="POST" enctype="multipart/form-data"> 
+                    <input type="file" name="avatar">
+                    <input type="submit" value="mettre a jour">
+                </form>
+
+                <?php
+                    if($erreur != '') {
+                        echo '<p style="color:red;">'.$erreur.'</p>';
+                    }
+                ?>
+            </div>
+            <script>
+                document.getElementById('toggleButton').addEventListener('click', function() {
+                    var content = document.getElementById('menuContent');
+                    if (content.style.display === 'none' || content.style.display === '') {
+                        content.style.display = 'block';
+                        this.textContent = 'Annuler';
+                    } else {
+                        content.style.display = 'none';
+                        this.textContent = 'Changer la photo de profil';
+                    }
+                });
+            </script>
+
+            <br>
+            <?php echo "Description : ".$_SESSION['description'];?>
+
         </div>
         <footer>
             <p>Je suis le footer</p>

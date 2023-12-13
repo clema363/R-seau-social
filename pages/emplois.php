@@ -1,9 +1,16 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['id'])) {
+        header('Location: connexion.php');
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Accueil</title>
+    <title>Emplois</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script>
         document.addEventListener('DOMContentLoaded', function () {

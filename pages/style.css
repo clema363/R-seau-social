@@ -29,7 +29,7 @@ nav {
 #wrapper {
     width: 80%;
     margin: auto;
-    margin-top: 65px; 
+    margin-top: 75px; 
 }
 
 
@@ -74,8 +74,120 @@ nav ul li a:hover{
     border-bottom: 2px solid #C7C8C8;
     color: black;
 }
+/*A faire à la fin */
+/*
+@media (max-width: 900px) {
+    #wrapper, nav {
+        width: 95%;
+    }
+
+    #logo {
+        height: 30px; 
+    }
+
+    /
+}
+
+
+@media (max-width: 480px) {
+    #wrapper, nav {
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul li {
+        margin: 5px 0; 
+    }
+
+    #logo {
+        height: 20px; 
+    }
+
+}
+*/
+
 /*Fin CSS menu*/
 
+
+/*CSS TOUTES LES PAGES*/
+#section {
+    padding-top: 5px;
+    padding-bottom: 15px;
+
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: white;
+    border-radius: 15px;
+}
+
+
+/*CSS PAGE ACCUEIL*/
+
+
+
+/*CSS PAGE RESEAU*/
+
+.petit_profil {
+    /*background-color: gray;*/
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;   
+    height: 50px;
+    border-bottom: solid #E8E8E8 1px;
+    padding-top: 10px;
+    
+
+}
+
+.petit_profil .bouton_unfollow {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #E03D3D;
+    border: solid black 1px;
+    border-radius: 20px;
+    padding: 8px;
+    margin-right: 20px;
+        
+}
+
+.petit_profil .bouton_follow {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #448CD0;
+    border: solid black 1px;
+    border-radius: 20px;
+    padding: 8px;
+    margin-right: 20px;
+}
+
+
+
+/*CSS PAGE PROFIl*/
+#photo {
+    border-radius: 100%;
+    border: solid black 1px;
+    width: 100px;
+    height: 100px;
+}
+
+
+/*CSS PAGES NOTIFIATIONS*/
+
+
+
+/*CSS PAGES MESSAGERIES*/
+
+
+/*CSS PAGES EMPLOIS*/
+
+
+/*CSS FOOTER*/
 footer {
     background-color: #333;
     color: white;

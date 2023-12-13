@@ -1,3 +1,28 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['id'])) {
+        header('Location: connexion.php');
+        exit;
+    }
+    
+    /*$host = 'localhost';
+    $dbname = 'reseausocial';  // Remplacez par le nom de votre base de données
+    $username = 'root';
+    $password = 'root';  // Laissez vide si aucun mot de passe n'est défini
+
+    try {
+        $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "SELECT * FROM membres";  // Assurez-vous que la table s'appelle 'membres'
+        $stmt = $conn->query($sql);
+
+        $membres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch(PDOException $e) {
+        echo "Erreur : " . $e->getMessage();
+    }*/
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,9 +67,9 @@
         </nav>
     </div>
     <div id="wrapper">
-        
         <div id="section">
-           <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <?php echo "Bonjour, " . $_SESSION['pseudo']; ?>
+            <?php echo "<img src='images/photo_de_profil/" . $_SESSION['photo_profil'] . "' width='100px' height='100px' border-radius='100%'>";?>
         </div>
         <footer>
             <p>Je suis le footer</p>
